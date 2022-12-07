@@ -1,6 +1,9 @@
 import cv2
 import numpy as np
 import constants as const
+import torch
+import pandas
+model = torch.hub.load('ultralytics/yolov5', 'yolov5s')
 
 def process_image(image):
     file = "static/uploads/" + image
@@ -230,3 +233,10 @@ def isBeigeWarm(image):
       return("warm beige")
   else:
       return("not")
+  
+def detect_if_human(image):
+    results = model(image)
+    category = results.pandas().xyxy[0]
+    if category['name'][0] == 'person':
+        return True
+    return False

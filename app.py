@@ -29,37 +29,35 @@ def image_upload():
         filename = secure_filename(file.filename)
         extension = filename.rsplit('.', 1)[1].lower()
         upload_file_name = str(int(time.time())) + "." + extension
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], upload_file_name))
-        skin_tone = utility.isPorcelain(upload_file_name)
-        if skin_tone == "Porcelian":
-            return render_template('porcelian.html')
-        if skin_tone == "sand neutral Range":
-            return render_template('sand.html')
-        if skin_tone == "warm beige":
-            return render_template('warm_beige.html')
-        if skin_tone == "ivory_neutral":
-            return render_template('natural.html')
-        if skin_tone == "warm ivory":
-            return render_template('warm_ivory.html')
-        # if skin_tone == "Almond Skintone":
-        # return render_template('')
-        # if skin_tone == "":
-        #     return render_template('')
-        # if skin_tone == "":
-        #     return render_template('')
-        # if skin_tone == "":
-        #     return render_template('')
-        # if skin_tone == "":
-        #     return render_template('')
-        # if skin_tone == "":
-        #     return render_template('')
-        # if skin_tone == "":
-        #     return render_template('')
-
-
-
-        
-            
+        if utility.detect_if_human(upload_file_name):
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], upload_file_name))
+            skin_tone = utility.isPorcelain(upload_file_name)
+            if skin_tone == "Porcelian":
+                return render_template('porcelian.html')
+            if skin_tone == "sand neutral Range":
+                return render_template('sand.html')
+            if skin_tone == "warm beige":
+                return render_template('warm_beige.html')
+            if skin_tone == "ivory_neutral":
+                return render_template('natural.html')
+            if skin_tone == "warm ivory":
+                return render_template('warm_ivory.html')
+            # if skin_tone == "Almond Skintone":
+            # return render_template('')
+            # if skin_tone == "":
+            #     return render_template('')
+            # if skin_tone == "":
+            #     return render_template('')
+            # if skin_tone == "":
+            #     return render_template('')
+            # if skin_tone == "":
+            #     return render_template('')
+            # if skin_tone == "":
+            #     return render_template('')
+            # if skin_tone == "":
+            #     return render_template('')
+        else:
+            return ('<h1>Not a human</h1>')
 
     return render_template('capture.html')
 
