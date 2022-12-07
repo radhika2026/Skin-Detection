@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+    <div>
+        <img src ="{{ url_for('display_image', filename= Headskin) }}" alt="Big data" width="1440" height="781"/>
+    </div>
+
+
+<!-- <img src="Headskin.png" alt="Big data" width="1440" height="781"> -->
+
+
+
+
+<h2 style="color:Tomato; text-align: center; font-size: 35px">How it Works</h2>
+
+</body>
+
+<head>
+<style>
+.city {
+  background-image: url("{{url_for('display_image', filename=Ptr) }}");
+  color: Black;
+  border: 2px solid black;
+  margin: 20px;
+  padding: 100px;
+}
+</style>
+</head>
+
+<head>
+<style>
+.city1 {
+  background-image: url("{{url_for('display_image', filename=Ptr1) }}");
+  color: Black;
+  border: 2px solid black;
+  margin: 20px;
+  padding: 200px;
+}
+</style>
+</head>
+
+<head>
+    <style>
+        .city2 {
+        background-image: url("{{url_for('display_image', filename=Ptr2) }}");
+        color: Black;
+        border: 2px solid black;
+        margin: 20px;
+        padding: 200px;
+        }
+        .city3 {
+        background-image: url("{{url_for('display_image', filename=Ptr3) }}");
+        color: Black;
+        border: 2px solid black;
+        margin: 20px;
+        padding: 200px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="city">
+<h2 style = "color:Black; text-align: center"><b>Step 1</b> : Upload your Image / Capture your image in real-time </h2>
+
+<h2 style="color: #AA336A; text-align: center";>Upload your image</h2>
+
+<p style="font-size:100%; color:Black; text-align: center">Click on the "Choose File" button to upload a file</p>
+
+<form style = "text-align: center; color:Black" action="/image_upload" method="POST" enctype="multipart/form-data">
+  <input type="file" id="myFile" name="file">
+  <input type="submit" />
+</form>
+
+<h2 style="color: #AA336A; text-align: center";>Capture your image</h2>
+
+
+<li style = "text-align: center"><a href="/capture" target="_blank" style="color: yellow; text-align:center" >Click here for live image capture</a></li>
+
+</div>
+<div class="city1">
+<h2 style = "text-align: center">Step 2 :  Skin Tone is analysed and results displayed  </h2>
+
+</div>
+<div class="city2">
+<h2 style = "text-align: center;">Step 3 : Personalised Cosmetic recommendation is generated </h2>
+</div>
+<div class="city3">
+<h2 style = "text-align: center">Step 4 : Redirected to product page for purchase (optional) </h2>
+</div>
+
+
+
+</body>
+
+<head>
+<meta charset="UTF-8">
+<style>
+footer {
+  background-color: grey;
+  padding: 10px;
+  text-align: center;
+  font-size: 20px;
+  color: white;
+}
+</style>
+</head>
+
+<footer>
+<p style="color:Yellow;">All rights reserved &copy;</p>
+
+</footer>
+
+
+
+</html>
