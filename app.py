@@ -5,6 +5,7 @@ import time
 import utility
 import shutil
 from subprocess import call
+import time
 
 UPLOAD_FOLDER = 'static/uploads'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', ])
@@ -15,6 +16,10 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+def isHuman(upload_file_name):
+    file = "static/uploads/" + upload_file_name
+    print("Human",  utility.detect_if_human(file))
+    return utility.detect_if_human(file)
 
 @app.route('/image_upload', methods = ["POST"])
 def image_upload():
@@ -29,11 +34,16 @@ def image_upload():
         filename = secure_filename(file.filename)
         extension = filename.rsplit('.', 1)[1].lower()
         upload_file_name = str(int(time.time())) + "." + extension
-        if utility.detect_if_human(upload_file_name):
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], upload_file_name))
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], upload_file_name))
+        print("Human",   isHuman(upload_file_name))
+        if not isHuman(upload_file_name):
+            return("<h1>Not a Human</h1>")
+        if True:
             skin_tone = utility.isPorcelain(upload_file_name)
             if skin_tone == "Porcelian":
+                # if isHuman(upload_file_name):
                 return render_template('porcelian.html')
+                return("<h1>Not a Human</h1>")
             if skin_tone == "sand neutral Range":
                 return render_template('sand.html')
             if skin_tone == "warm beige":

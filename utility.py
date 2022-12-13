@@ -237,6 +237,8 @@ def isBeigeWarm(image):
 def detect_if_human(image):
     results = model(image)
     category = results.pandas().xyxy[0]
-    if category['name'][0] == 'person':
-        return True
+    print(category, "category \n\n\n\n\n")
+    if len(category) != 0:
+        if category['name'][0] == 'person':
+            return True
     return False
